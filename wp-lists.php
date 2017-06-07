@@ -70,10 +70,13 @@ if ( ! class_exists('WPLists')) {
 			if ($list = get_post_meta($post->ID, 'top_ten_list', TRUE)) {
 				if (is_array($list)) {
 					ob_start();
+					echo '<div class="top-ten-lists-container">';
 
 					foreach ($list as $item) {
 						include plugin_dir_path(__FILE__) . 'views/list-item.php';
 					}
+
+					echo '</div>';
 
 					$list = ob_get_contents();
 					ob_end_clean();

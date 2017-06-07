@@ -1,3 +1,7 @@
+<style type="text/css">
+	#wp-post-lists-plugin div.mce-tinymce {border: 1px solid rgba(0,0,0,0.2);}
+</style>
+
 <div data-ng-app="topTenListsAngularApp" data-ng-controller="main" class="ng-cloak">
 	<div style="border:1px solid #ddd;margin-bottom:10px;" class="top-ten-list-item" data-ng-repeat="item in listItems" data-ng-controller="item" data-ng-init="init(item, $index)">
 		<div style="background:#ddd;padding:5px;">#{{item.display_order}}</div>

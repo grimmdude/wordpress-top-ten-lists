@@ -2,7 +2,6 @@
 var topTenListsAngularApp = angular.module('topTenListsAngularApp', []);
 
 topTenListsAngularApp.controller('main', function($scope, $window, $log) {
-	$scope.test = 'hi';
 	$scope.listItems = $window.topTenListsGlobal.items;
 
 	$scope.newListItem = function() {
@@ -13,10 +12,14 @@ topTenListsAngularApp.controller('main', function($scope, $window, $log) {
 });
 
 topTenListsAngularApp.controller('item', function($scope, $window, $log) {
+	$scope.items;
+	$scope.index;
 	$scope.item;
 
-	$scope.init = function(item, index) {
-		$scope.item = item;
+	$scope.init = function(items, index) {
+		$scope.items = items;
+		$scope.index = index;
+		$scope.item = $scope.items[$scope.index];
 	};
 
 	$scope.addImage = function() {
@@ -26,6 +29,7 @@ topTenListsAngularApp.controller('item', function($scope, $window, $log) {
 			button: {
 				text: 'Use this image'
 			},
+			//frame: 'post',
 			multiple: false  // Set to true to allow multiple files to be selected
 	    });
 
@@ -42,6 +46,26 @@ topTenListsAngularApp.controller('item', function($scope, $window, $log) {
     	});
 
     	frame.open();
+	};
+
+	$scope.removeItem = function() {
+		if (confirm('Are you sure you want to remove this item?')) {
+			$scope.items.splice($scope.index, 1);
+		}
+	};
+
+	$scope.moveItemUp = function() {
+		// Switch display order with item above
+		$scope.items[$scope.index - 1].display_order++;
+		$scope.items[$scope.index].display_order--;
+	};
+
+	$scope.moveItemDown = function() {
+		// Switch display order with item below
+		$scope.items[$scope.index + 1].display_order--;
+		$scope.items[$scope.index].display_order++;
+		$scope.items = $scope.items.sort(function(a, b) {return a - b;});
+		$log.info($scope.items);
 	};
 });
 

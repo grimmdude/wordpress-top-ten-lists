@@ -3,13 +3,13 @@
  * @package WP Lists
  */
 /*
-Plugin Name: WP Lists
+Plugin Name: Top Ten Lists
 Plugin URI: https://wordpress.org/plugins/retro-game-emulator/
-Description: WP Lists makes it easy to create "Top 10" style posts that readers can vote on.
+Description: Top Ten Lists makes it easy to create popular "Top 10" (or more) style posts.
 Version: 1.0.0
 Author: grimmdude
 Author URI: http://grimmdude.com
-Text Domain: wp-lists
+Text Domain: top-ten-lists
 License: GPLv2 or later
 */
 
@@ -51,7 +51,7 @@ if ( ! class_exists('WPLists')) {
 
 		public function metaBox($post)
 		{
-			 add_meta_box('wp-post-lists-plugin', __('Top Ten Lists'), array($this, 'listFields'), 'post', 'normal', 'high');
+			 add_meta_box('wp-post-lists-plugin', __('<span class="dashicons dashicons-editor-ol"></span> Top Ten Lists'), array($this, 'listFields'), 'post', 'normal', 'high');
 		}
 
 
@@ -60,6 +60,8 @@ if ( ! class_exists('WPLists')) {
 			if (isset($_POST['top_ten_list'])) {
 				update_post_meta($post_id, 'top_ten_list', $_POST['top_ten_list']);
 			}
+
+			return $post_id;
 		}
 
 
@@ -87,7 +89,6 @@ if ( ! class_exists('WPLists')) {
 
 			return $content;
 		}
-
 
 	}
 

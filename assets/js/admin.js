@@ -5,27 +5,14 @@ topTenListsAngularApp.controller('main', function($scope, $window, $log) {
 	$scope.listItems = $window.topTenListsGlobal.items;
 
 	$scope.newListItem = function() {
-		var displayOrder = $scope.listItems.length + 1;
-		var model = {'display_order' : displayOrder, 'title' : '', 'image_url' : '', 'image_id' : ''};
+		var model = {'title' : '', 'image_url' : '', 'image_id' : ''};
 		var length = $scope.listItems.push(model);
 	};
-});
 
-topTenListsAngularApp.controller('item', function($scope, $window, $log) {
-	$scope.items;
-	$scope.index;
-	$scope.item;
-
-	$scope.init = function(items, index) {
-		$scope.items = items;
-		$scope.index = index;
-		$scope.item = $scope.items[$scope.index];
-	};
-
-	$scope.addImage = function() {
+	$scope.addImage = function(index) {
 		// Create a new media frame
 		frame = $window.wp.media({
-			title: 'Select or Upload an Image for List Item #' + $scope.item.display_order,
+			title: 'Select or Upload an Image for List Item #' + (index + 1),
 			button: {
 				text: 'Use this image'
 			},
@@ -40,34 +27,31 @@ topTenListsAngularApp.controller('item', function($scope, $window, $log) {
 			var attachment = frame.state().get('selection').first().toJSON();
 
 			$scope.$apply(function() {
-            	$scope.item.image_url = attachment.url;
-            	$scope.item.image_id = attachment.id;
+            	$scope.listItems[index].image_url = attachment.url;
+            	$scope.listItems[index].image_id = attachment.id;
         	});
     	});
 
     	frame.open();
 	};
 
-	$scope.removeItem = function() {
+	$scope.removeItem = function(index) {
 		if (confirm('Are you sure you want to remove this item?')) {
-			$scope.items.splice($scope.index, 1);
+			$scope.listItems.splice(index, 1);
 		}
 	};
 
-	$scope.moveItemUp = function() {
-		// Switch display order with item above
-		$scope.items[$scope.index - 1].display_order++;
-		$scope.items[$scope.index].display_order--;
+	$scope.moveItemUp = function(index) {
+		// Switch with item above
+		$scope.listItems.splice(index - 1, 2, $scope.listItems[index], $scope.listItems[index - 1]);
 	};
 
-	$scope.moveItemDown = function() {
-		// Switch display order with item below
-		$scope.items[$scope.index + 1].display_order--;
-		$scope.items[$scope.index].display_order++;
-		$scope.items = $scope.items.sort(function(a, b) {return a - b;});
-		$log.info($scope.items);
+	$scope.moveItemDown = function(index) {
+		// Switch with item below
+		$scope.listItems.splice(index, 2, $scope.listItems[index + 1], $scope.listItems[index]);
 	};
 });
+
 
 topTenListsAngularApp.directive('ttlTextarea', ['$window', function($window) {
 	return {

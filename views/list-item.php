@@ -1,5 +1,5 @@
-<h3 class="top-ten-lists-title">
-	<?php echo esc_html(sprintf('%s. %s', $item['display_order'], $item['title'])); ?>
+<h3 class="top-ten-lists-title" id="<?php echo $key + 1; ?>">
+	<span><?php echo $key + 1; ?>.</span> <?php echo esc_html($item['title']); ?>
 </h3>
 <?php if ($item['image_id']): ?>
 	<div class="top-ten-lists-image">

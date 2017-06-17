@@ -1,13 +1,13 @@
 <?php
 /**
- * @package WP Lists
+ * @package Top Ten Lists
  */
 /*
 Plugin Name: Top Ten Lists
 Plugin URI: https://wordpress.org/plugins/retro-game-emulator/
 Description: Top Ten Lists makes it easy to create popular "Top 10" (or more) style posts.
 Version: 1.0.0
-Author: grimmdude
+Author: Garrett Grimm
 Author URI: http://grimmdude.com
 Text Domain: top-ten-lists
 License: GPLv2 or later
@@ -18,8 +18,8 @@ if ( ! function_exists('add_action')) {
 	exit;
 }
 
-if ( ! class_exists('WPLists')) {
-	class WPLists
+if ( ! class_exists('TopTenListsPlugin')) {
+	class TopTenListsPlugin
 	{
 		public function __construct()
 		{
@@ -74,7 +74,7 @@ if ( ! class_exists('WPLists')) {
 					ob_start();
 					echo '<div class="top-ten-lists-container">';
 
-					foreach ($list as $item) {
+					foreach ($list as $key => $item) {
 						include plugin_dir_path(__FILE__) . 'views/list-item.php';
 					}
 
@@ -92,5 +92,5 @@ if ( ! class_exists('WPLists')) {
 
 	}
 
-	new WPLists;
+	new TopTenListsPlugin;
 }

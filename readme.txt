@@ -1,4 +1,4 @@
-=== WP Lists ===
+=== Top Ten Lists ===
 Contributors: grimmdude
 Tags: lists
 Requires at least: 3.5
@@ -11,8 +11,10 @@ WP Lists makes it easy to create "Top 10" style posts that readers can vote on.
 
 == Description ==
 
-WP Lists makes it easy to create "Top 10" style posts that readers can vote on.
-
+WP Lists makes it easy to create "Top 10" style posts.
+* Supports image captions, good for providing attribution credit.
+* Link directly to list item by using hash link to number.  Ex: site.com/top-ten-list#4
+* All elements use distinct classes giving you full control over the CSS if desired.
 
 == Installation ==
 

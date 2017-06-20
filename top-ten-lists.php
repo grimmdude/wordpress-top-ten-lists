@@ -33,7 +33,6 @@ if ( ! class_exists('TopTenListsPlugin')) {
 
 		public function adminScripts(string $hook)
 		{
-			global $current_screen;
 			$screen = get_current_screen();
 
 			//print_r($screen);

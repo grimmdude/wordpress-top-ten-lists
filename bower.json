@@ -1,0 +1,21 @@
+{
+  "name": "top-ten-lists",
+  "homepage": "https://github.com/grimmdude/wordpress-top-ten-lists",
+  "authors": [
+    "Garrett Grimm <ggrimm@prudentpublishing.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular" : "1.6.4"
+  }
+}

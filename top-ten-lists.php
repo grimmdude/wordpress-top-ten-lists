@@ -34,10 +34,12 @@ if ( ! class_exists('TopTenListsPlugin')) {
 		public function adminScripts(string $hook)
 		{
 			wp_enqueue_media();
+
+			wp_register_script('angular', plugin_dir_url(__FILE__) . 'bower_components/angular/angular.min.js', array(), '1.6.4');
 			wp_register_script('top_ten_lists_admin_js', plugin_dir_url(__FILE__) . 'assets/js/admin.js', array('angular'));
-			wp_register_script('angular', plugin_dir_url(__FILE__) . 'assets/js/angular.min.js', array(), '1.6.4');
-			wp_enqueue_script('top_ten_lists_admin_js');
+
 			wp_enqueue_script('angular');
+			wp_enqueue_script('top_ten_lists_admin_js');
 		}
 
 

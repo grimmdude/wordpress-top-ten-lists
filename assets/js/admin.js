@@ -2,7 +2,7 @@
 var topTenListsAngularApp = angular.module('topTenListsAngularApp', []);
 
 topTenListsAngularApp.controller('main', function($scope, $window, $log) {
-	$scope.listItems = $window.topTenListsGlobal.items;
+	$scope.listItems = $window.topTenListsGlobal.items || [];
 
 	$scope.newListItem = function() {
 		var model = {'title' : '', 'image_url' : '', 'image_id' : ''};
@@ -58,14 +58,29 @@ topTenListsAngularApp.directive('ttlTextarea', ['$window', function($window) {
 		restrict: 'E',
 		scope: {
 			itemIndex: '=index',
-			item: '='
+			item: '=',
+			items: '='
 		},
 		template: '<textarea data-ng-bind="item.content"></textarea>',
-		link: function(scope, element) {
-			var textarea = element.find('textarea');
-			var id = 'top_ten_list_editor_' + scope.itemIndex;
-			textarea.attr('id', id).attr('name', 'top_ten_list[' + scope.itemIndex + '][content]');
-			$window.tinyMCE.execCommand('mceAddEditor', false, id); 
+		link: function($scope, element) {
+			$scope.$watchCollection('items', function() {
+        		var textarea = element.find('textarea');
+
+        		// Update name attr
+        		textarea.attr('name', 'top_ten_list[' + $scope.itemIndex + '][content]');
+
+        		var id = 'top_ten_list_editor_' + $scope.itemIndex;
+
+        		if (textarea.attr('id')) {
+        			id = textarea.attr('id');
+        			$window.tinyMCE.execCommand('mceRemoveEditor', false, id);
+        			$window.tinyMCE.execCommand('mceAddEditor', false, id);
+
+        		} else {
+        			textarea.attr('id', id).attr('name', 'top_ten_list[' + $scope.itemIndex + '][content]');
+        			$window.tinyMCE.execCommand('mceAddEditor', false, id);
+        		}
+     		});
 		}
 	}
 }]);

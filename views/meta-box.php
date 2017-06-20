@@ -22,7 +22,7 @@
 		</p>
 		<input type="hidden" name="top_ten_list[{{$index}}][image_url]" data-ng-value="item.image_url" />
 		<input type="hidden" name="top_ten_list[{{$index}}][image_id]" data-ng-value="item.image_id" />
-		<ttl-textarea index="$index" item="item">{{item.content}}</ttl-textarea>
+		<ttl-textarea index="$index" item="item" items="listItems">{{item.content}}</ttl-textarea>
 		<div style="clear:both;margin-top:10px;">
 			<div style="float:left;">
 				<a href="javascript:;" style="text-decoration:none;" title="Move item up a number." data-ng-show="$index > 0" data-ng-click="moveItemUp($index)"><span class="dashicons dashicons-arrow-up-alt"></span></a>
@@ -33,6 +33,7 @@
 			</div>
 		</div>
 	</div>
+	<p data-ng-show="!listItems.length">Click the button below to start your list!</p>
 	<p><a class="button" data-ng-click="newListItem()"><?php _e('New List Item'); ?></a></p>
 </div>
 

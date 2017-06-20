@@ -14,7 +14,8 @@ WP Lists makes it easy to create "Top 10" style posts that readers can vote on.
 Top Ten Lists makes it easy to create "Top 10" style posts on your Wordpress powered site.
 
 * Re-order list items with a single click.
-* Link directly to list item by using hash link to number.  Ex: site.com/top-ten-list#
+* Link directly to list item by using hash link to number.  Ex: mysite.com/list-post/#4
+* Easy to use interface built into the post editor.
 * Supports image captions, good for providing attribution credit.
 * All elements use distinct classes giving you full control over the CSS if desired.
 

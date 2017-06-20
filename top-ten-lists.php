@@ -33,13 +33,19 @@ if ( ! class_exists('TopTenListsPlugin')) {
 
 		public function adminScripts(string $hook)
 		{
-			wp_enqueue_media();
+			global $current_screen;
+			$screen = get_current_screen();
 
-			wp_register_script('angular', plugin_dir_url(__FILE__) . 'bower_components/angular/angular.min.js', array(), '1.6.4');
-			wp_register_script('top_ten_lists_admin_js', plugin_dir_url(__FILE__) . 'assets/js/admin.js', array('angular'));
+			//print_r($screen);
+			if (in_array($screen->id, array('post', 'page'))) {
+				wp_enqueue_media();
 
-			wp_enqueue_script('angular');
-			wp_enqueue_script('top_ten_lists_admin_js');
+				wp_register_script('angular', plugin_dir_url(__FILE__) . 'bower_components/angular/angular.min.js', array(), '1.6.4');
+				wp_register_script('top_ten_lists_admin_js', plugin_dir_url(__FILE__) . 'assets/js/admin.js', array('angular'));
+
+				wp_enqueue_script('angular');
+				wp_enqueue_script('top_ten_lists_admin_js');
+			}
 		}
 
 
@@ -53,7 +59,7 @@ if ( ! class_exists('TopTenListsPlugin')) {
 
 		public function metaBox($post)
 		{
-			 add_meta_box('wp-post-lists-plugin', __('<span class="dashicons dashicons-editor-ol"></span> Top Ten Lists'), array($this, 'listFields'), 'post', 'normal', 'high');
+			 add_meta_box('top-ten-lists-plugin', __('<span class="dashicons dashicons-editor-ol"></span> Top Ten Lists'), array($this, 'listFields'), 'post', 'normal', 'high');
 		}
 
 

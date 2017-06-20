@@ -1,5 +1,5 @@
 <style type="text/css">
-	#wp-post-lists-plugin div.mce-tinymce {border: 1px solid rgba(0,0,0,0.2);}
+	#top-ten-lists-plugin div.mce-tinymce {border: 1px solid rgba(0,0,0,0.2);}
 </style>
 
 <div data-ng-app="topTenListsAngularApp" data-ng-controller="main" class="ng-cloak">
